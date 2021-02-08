@@ -1,34 +1,80 @@
-<h1>Eat Da Burger!</h1>
+<div class="container-fluid">
 
-<img src="/public/images/burger.png">
+    <div class="row mb-n4">
 
-<h2>Bon Appetite!</h2>
+        <main class="col-12 jumbotron jumbotron-fluid">
 
-<ul>
-    {{#each burger}}
-    {{#unless devoured}}
-    {{> burger/burger-block burger=true}}
-    {{/unless}}
-    {{/each}}
-</ul>
-
-<h2>Tasty!!!</h2>
-
-<ul>
-    {{#each burger}}
-    {{#if devoured}}
-    {{> burger/burger-block burger=false}}
-    {{/if}}
-    {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-    <div class="form-group">
-        <label for="burger_name">Burger Name:</label>
-        <input type="text" id="burger_name" name="burger_name">
+            <div class="container d-flex justify-content-center">
+                <img src="/assets/img/burger.png">
+                <h1 class="display-4">Eat A Burger!</h1>
+                <img src="/assets/img/burger.png">
+            </div>
+        </main>
     </div>
 
-    <button type="submit">Add Burger</button>
-</form>
+    <section class="row">
+
+        <div class="col-6 border-right border-dark overflow-auto margin-fix">
+            <h2>Burger List:</h2>
+            <ul class="list-group">
+                {{#each burgers}}
+                {{#unless devoured}}
+                <li class="list-group-item">
+
+                    <div class="row clearfix">
+
+                        <h3 class="col-8 text-capitalize">{{burger_name}}</h3>
+
+                        <button class="col-4 btn btn-success float-right change-devoured" data-id="{{id}}"
+                            data-devoured="1">Devour It!</button>
+                    </div>
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-6 margin-fix">
+            <h2>Devoured List:</h2>
+            <ul class="list-group">
+                {{#each burgers}}
+                {{#if devoured}}
+                <li class="list-group-item-danger">
+
+                    <div class="row clearfix">
+
+                        <h3 class="col-11 text-capitalize"> {{burger_name}}</h3>
+
+                        <button class="col-1 btn btn-danger float-right delete-burger" data-id="{{id}}"
+                            data-burger_name="{{burger_name}}">X</button>
+                    </div>
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+
+    <section class="row mt-3 fixed-bottom white-background">
+        <div class="container d-flex justify-content-center">
+
+            <form class="col-12 text-center create-form" action="/api/burgers" method="post">
+
+                <div class="row">
+
+                    <h2 class="col-12">Submit a new burger you want to eat!</h2>
+                </div>
+
+                <div class="row">
+
+                    <textarea class="col-12" id="burger_name"></textarea>
+                </div>
+
+                <div class="row  d-flex justify-content-center">
+
+                    <button class="col-6 btn btn-dark" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
