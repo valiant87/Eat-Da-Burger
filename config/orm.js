@@ -13,7 +13,7 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-// Helper function to convert object key/value pairs to SQL syntax
+// Sets a helper function
 function objToSql(ob) {
   var arr = [];
 
@@ -28,7 +28,7 @@ function objToSql(ob) {
     }
   }
 
-  // translate array of strings to a single comma-separated string
+  // Set array to string
   return arr.toString();
 }
 
